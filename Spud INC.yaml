@@ -146,16 +146,16 @@ Children:
       Name: Wheels
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
-        name: Send to SmartDashboard, validators: null, value: true}
+        name: Send to SmartDashboard, validators: null, value: false}
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
         name: Default command parameters
         validators: null
         value:
         - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: Left, type: DoubleSupplier,
-          value: () -> 0}
+          value: () -> getJoystick1().getY}
         - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: Right, type: DoubleSupplier,
-          value: () -> 0}
+          value: () -> getJoystick2().getY}
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: Tank Drive}
       Constants: !!robotbuilder.data.properties.ConstantsProperty
@@ -168,7 +168,7 @@ Children:
         - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: Right, type: String,
           value: ''}
     Base: Subsystem
-    Name: Drivetrain
+    Name: DriveTrain
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -176,23 +176,13 @@ Children:
   - Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: &id006 ['0', '1', '2', '3', '4', '5']
+        choices: ['0', '1', '2', '3', '4', '5']
         default: 1
         name: Number
-        validators: &id007 [Joystick]
+        validators: [Joystick]
         value: '0'
     Base: Joystick
     Name: Joystick 1
-  - Children: []
-    Properties:
-      Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: *id006
-        default: 1
-        name: Number
-        validators: *id007
-        value: '1'
-    Base: Joystick
-    Name: Joystick 2
   Properties: {}
   Base: OI
   Name: Operator Interface
@@ -233,19 +223,19 @@ Children:
       Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Run When Disabled, validators: null, value: false}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: Drivetrain}
+        name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id008
+        default: []
+        name: Parameter presets
+        validators: null
+        value:
         - !!robotbuilder.data.properties.ParameterSet
           name: joystick
           parameters:
           - {name: Left, type: DoubleSupplier, value: () -> getJoystick1().getY}
           - {name: Right, type: DoubleSupplier, value: () -> getJoystick2().getY}
-        name: Parameter presets
-        validators: null
-        value: *id008
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: Tank Drive
   Properties: {}

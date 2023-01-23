@@ -5,123 +5,145 @@ Children:
 - Children:
   - Children:
     - Children:
-      - Children: []
+      - Children:
+        - Children: []
+          Properties:
+            Type: !!robotbuilder.data.properties.ChoicesProperty
+              choices: &id001 [Victor, Jaguar, Talon, VictorSP, PWMTalonSRX, Spark,
+                SD540, PWMVictorSPX, DMC60, PWMSparkMax, PWMTalonFX, PWMVenom]
+              default: PWMVictorSPX
+              name: Type
+              validators: null
+              value: PWMVictorSPX
+            Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+              choices: &id002 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+                '11', '12', '13', '14', '15', '16', '17', '18', '19']
+              default: '0'
+              name: Output Channel (PWM)
+              validators: &id003 [PWMOutput]
+              value: '1'
+            Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+              name: Inverted, validators: null, value: false}
+          Base: Motor Controller
+          Name: Left1
+        - Children: []
+          Properties:
+            Type: !!robotbuilder.data.properties.ChoicesProperty
+              choices: *id001
+              default: PWMVictorSPX
+              name: Type
+              validators: null
+              value: PWMVictorSPX
+            Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+              choices: *id002
+              default: '0'
+              name: Output Channel (PWM)
+              validators: *id003
+              value: '0'
+            Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+              name: Inverted, validators: null, value: false}
+          Base: Motor Controller
+          Name: Left2
         Properties:
-          Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: &id001 [Victor, Jaguar, Talon, VictorSP, PWMTalonSRX, Spark,
-              SD540, PWMVictorSPX, DMC60, PWMSparkMax, PWMTalonFX, PWMVenom]
-            default: PWMVictorSPX
-            name: Type
-            validators: null
-            value: PWMTalonSRX
-          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-            choices: &id002 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-              '11', '12', '13', '14', '15', '16', '17', '18', '19']
-            default: '0'
-            name: Output Channel (PWM)
-            validators: &id003 [PWMOutput]
-            value: '0'
-          Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-            name: Inverted, validators: null, value: false}
-        Base: Motor Controller
-        Name: Motor Controller Right  1
-      - Children: []
+          MotorController2: !!robotbuilder.data.properties.ChildSelectionProperty
+            default: 1
+            name: MotorController2
+            type: PIDOutput
+            validators: &id004 [MotorControllerGroup, ChildDropdownSelected]
+            value: Left2
+          MotorController1: !!robotbuilder.data.properties.ChildSelectionProperty
+            default: 0
+            name: MotorController1
+            type: PIDOutput
+            validators: &id005 [MotorControllerGroup, ChildDropdownSelected]
+            value: Left1
+          MotorController4: !!robotbuilder.data.properties.ChildSelectionProperty {
+            default: null, name: MotorController4, type: PIDOutput, validators: null,
+            value: null}
+          MotorController3: !!robotbuilder.data.properties.ChildSelectionProperty {
+            default: null, name: MotorController3, type: PIDOutput, validators: null,
+            value: null}
+        Base: Motor Controller Group
+        Name: Left
+      - Children:
+        - Children: []
+          Properties:
+            Type: !!robotbuilder.data.properties.ChoicesProperty
+              choices: *id001
+              default: PWMVictorSPX
+              name: Type
+              validators: null
+              value: PWMVictorSPX
+            Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+              choices: *id002
+              default: '0'
+              name: Output Channel (PWM)
+              validators: *id003
+              value: '4'
+            Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+              name: Inverted, validators: null, value: false}
+          Base: Motor Controller
+          Name: Right1
+        - Children: []
+          Properties:
+            Type: !!robotbuilder.data.properties.ChoicesProperty
+              choices: *id001
+              default: PWMVictorSPX
+              name: Type
+              validators: null
+              value: PWMVictorSPX
+            Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+              choices: *id002
+              default: '0'
+              name: Output Channel (PWM)
+              validators: *id003
+              value: '5'
+            Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+              name: Inverted, validators: null, value: false}
+          Base: Motor Controller
+          Name: Right2
         Properties:
-          Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id001
-            default: PWMVictorSPX
-            name: Type
-            validators: null
-            value: PWMTalonSRX
-          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id002
-            default: '0'
-            name: Output Channel (PWM)
-            validators: *id003
-            value: '1'
-          Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-            name: Inverted, validators: null, value: false}
-        Base: Motor Controller
-        Name: Motor Controller Right 2
+          MotorController2: !!robotbuilder.data.properties.ChildSelectionProperty
+            default: 1
+            name: MotorController2
+            type: PIDOutput
+            validators: *id004
+            value: Right2
+          MotorController1: !!robotbuilder.data.properties.ChildSelectionProperty
+            default: 0
+            name: MotorController1
+            type: PIDOutput
+            validators: *id005
+            value: Right1
+          MotorController4: !!robotbuilder.data.properties.ChildSelectionProperty {
+            default: null, name: MotorController4, type: PIDOutput, validators: null,
+            value: null}
+          MotorController3: !!robotbuilder.data.properties.ChildSelectionProperty {
+            default: null, name: MotorController3, type: PIDOutput, validators: null,
+            value: null}
+        Base: Motor Controller Group
+        Name: Right
       Properties:
         Right Motor: !!robotbuilder.data.properties.ChildSelectionProperty
           default: 1
           name: Right Motor
           type: PIDOutput
-          validators: &id004 [RobotDrive2, ChildDropdownSelected]
-          value: Motor Controller Right 2
+          validators: [RobotDrive2, ChildDropdownSelected]
+          value: Right1
         Maximum Output: !!robotbuilder.data.properties.DoubleProperty {default: 1,
           name: Maximum Output, validators: null, value: 1.0}
         Left Motor: !!robotbuilder.data.properties.ChildSelectionProperty
           default: 0
           name: Left Motor
           type: PIDOutput
-          validators: &id005 [RobotDrive2, ChildDropdownSelected]
-          value: Motor Controller Right  1
+          validators: [RobotDrive2, ChildDropdownSelected]
+          value: Left1
         Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
           name: Safety Expiration Time, validators: null, value: 0.1}
         Safety Enabled: !!robotbuilder.data.properties.BooleanProperty {default: true,
           name: Safety Enabled, validators: null, value: true}
       Base: Differential Drive
-      Name: RightMotors
-    - Children:
-      - Children: []
-        Properties:
-          Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id001
-            default: PWMVictorSPX
-            name: Type
-            validators: null
-            value: PWMTalonSRX
-          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id002
-            default: '0'
-            name: Output Channel (PWM)
-            validators: *id003
-            value: '2'
-          Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-            name: Inverted, validators: null, value: false}
-        Base: Motor Controller
-        Name: Motor Controller Left Bank 1
-      - Children: []
-        Properties:
-          Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id001
-            default: PWMVictorSPX
-            name: Type
-            validators: null
-            value: PWMTalonSRX
-          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id002
-            default: '0'
-            name: Output Channel (PWM)
-            validators: *id003
-            value: '3'
-          Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-            name: Inverted, validators: null, value: false}
-        Base: Motor Controller
-        Name: Motor Controller Left Bank 2
-      Properties:
-        Right Motor: !!robotbuilder.data.properties.ChildSelectionProperty
-          default: 1
-          name: Right Motor
-          type: PIDOutput
-          validators: *id004
-          value: Motor Controller Left Bank 2
-        Maximum Output: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Maximum Output, validators: null, value: 1.0}
-        Left Motor: !!robotbuilder.data.properties.ChildSelectionProperty
-          default: 0
-          name: Left Motor
-          type: PIDOutput
-          validators: *id005
-          value: Motor Controller Left Bank 1
-        Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
-          name: Safety Expiration Time, validators: null, value: 0.1}
-        Safety Enabled: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Safety Enabled, validators: null, value: true}
-      Base: Differential Drive
-      Name: LeftMotors
+      Name: Wheels
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Send to SmartDashboard, validators: null, value: false}
@@ -129,62 +151,29 @@ Children:
         default: []
         name: Default command parameters
         validators: null
-        value: []
+        value:
+        - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: Left, type: DoubleSupplier,
+          value: () -> getJoystick1().getY}
+        - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: Right, type: DoubleSupplier,
+          value: () -> getJoystick2().getY}
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
+        name: Default Command, type: Command, validators: null, value: Tank Drive}
       Constants: !!robotbuilder.data.properties.ConstantsProperty
         default: []
         name: Constants
         validators: null
-        value: []
+        value:
+        - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: Left, type: String,
+          value: ''}
+        - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: Right, type: String,
+          value: ''}
     Base: Subsystem
     Name: DriveTrain
   Properties: {}
   Base: Subsystems
   Name: Subsystems
 - Children:
-  - Children:
-    - Children: []
-      Properties:
-        Interruptible: !!robotbuilder.data.properties.ChoicesProperty
-          choices: [CancelSelf, CancelIncoming]
-          default: CancelSelf
-          name: Interruptible
-          validators: null
-          value: CancelSelf
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: Xbox Controller 1}
-        Parameters: !!robotbuilder.data.properties.ParametersProperty
-          default: []
-          name: Parameters
-          validators: null
-          value: []
-        Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Send to SmartDashboard, validators: null, value: true}
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: [A, B, X, Y, Back, Start, LeftBumper, RightBumper, LeftStick, RightStick]
-          default: A
-          name: Button
-          validators: null
-          value: LeftStick
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: [TypeDropdownSelected]
-          value: Drive
-        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
-          name: Timeout, validators: null, value: 0.0}
-        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Add Timeout, validators: null, value: false}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: [onTrue, onFalse, whileTrue, whileFalse, toggleOnTrue, toggleOnFalse]
-          default: onTrue
-          name: When to Run
-          validators: null
-          value: onTrue
-      Base: Xbox Button
-      Name: XboxLeftJoy
+  - Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: ['0', '1', '2', '3', '4', '5']
@@ -192,8 +181,8 @@ Children:
         name: Number
         validators: [Joystick]
         value: '0'
-    Base: Xbox Controller
-    Name: Xbox Controller 1
+    Base: Joystick
+    Name: Joystick 1
   Properties: {}
   Base: OI
   Name: Operator Interface
@@ -228,20 +217,27 @@ Children:
         default: []
         name: Parameters
         validators: null
-        value: []
+        value:
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: Left, type: DoubleSupplier}
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: Right, type: DoubleSupplier}
       Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Run When Disabled, validators: null, value: false}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: DriveTrain}
+        name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
         default: []
         name: Parameter presets
         validators: null
-        value: []
+        value:
+        - !!robotbuilder.data.properties.ParameterSet
+          name: joystick
+          parameters:
+          - {name: Left, type: DoubleSupplier, value: () -> getJoystick1().getY}
+          - {name: Right, type: DoubleSupplier, value: () -> getJoystick2().getY}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
-    Name: Drive
+    Name: Tank Drive
   Properties: {}
   Base: Commands
   Name: Commands

@@ -3,147 +3,7 @@ Version 5.0
 ---
 Children:
 - Children:
-  - Children:
-    - Children:
-      - Children:
-        - Children: []
-          Properties:
-            Type: !!robotbuilder.data.properties.ChoicesProperty
-              choices: &id001 [Victor, Jaguar, Talon, VictorSP, PWMTalonSRX, Spark,
-                SD540, PWMVictorSPX, DMC60, PWMSparkMax, PWMTalonFX, PWMVenom]
-              default: PWMVictorSPX
-              name: Type
-              validators: null
-              value: PWMVictorSPX
-            Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-              choices: &id002 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-                '11', '12', '13', '14', '15', '16', '17', '18', '19']
-              default: '0'
-              name: Output Channel (PWM)
-              validators: &id003 [PWMOutput]
-              value: '1'
-            Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-              name: Inverted, validators: null, value: false}
-          Base: Motor Controller
-          Name: Left1
-        - Children: []
-          Properties:
-            Type: !!robotbuilder.data.properties.ChoicesProperty
-              choices: *id001
-              default: PWMVictorSPX
-              name: Type
-              validators: null
-              value: PWMVictorSPX
-            Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-              choices: *id002
-              default: '0'
-              name: Output Channel (PWM)
-              validators: *id003
-              value: '0'
-            Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-              name: Inverted, validators: null, value: false}
-          Base: Motor Controller
-          Name: Left2
-        Properties:
-          MotorController2: !!robotbuilder.data.properties.ChildSelectionProperty
-            default: 1
-            name: MotorController2
-            type: PIDOutput
-            validators: &id004 [MotorControllerGroup, ChildDropdownSelected]
-            value: Left2
-          MotorController1: !!robotbuilder.data.properties.ChildSelectionProperty
-            default: 0
-            name: MotorController1
-            type: PIDOutput
-            validators: &id005 [MotorControllerGroup, ChildDropdownSelected]
-            value: Left1
-          MotorController4: !!robotbuilder.data.properties.ChildSelectionProperty {
-            default: null, name: MotorController4, type: PIDOutput, validators: null,
-            value: null}
-          MotorController3: !!robotbuilder.data.properties.ChildSelectionProperty {
-            default: null, name: MotorController3, type: PIDOutput, validators: null,
-            value: null}
-        Base: Motor Controller Group
-        Name: Left
-      - Children:
-        - Children: []
-          Properties:
-            Type: !!robotbuilder.data.properties.ChoicesProperty
-              choices: *id001
-              default: PWMVictorSPX
-              name: Type
-              validators: null
-              value: PWMVictorSPX
-            Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-              choices: *id002
-              default: '0'
-              name: Output Channel (PWM)
-              validators: *id003
-              value: '4'
-            Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-              name: Inverted, validators: null, value: false}
-          Base: Motor Controller
-          Name: Right1
-        - Children: []
-          Properties:
-            Type: !!robotbuilder.data.properties.ChoicesProperty
-              choices: *id001
-              default: PWMVictorSPX
-              name: Type
-              validators: null
-              value: PWMVictorSPX
-            Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-              choices: *id002
-              default: '0'
-              name: Output Channel (PWM)
-              validators: *id003
-              value: '5'
-            Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-              name: Inverted, validators: null, value: false}
-          Base: Motor Controller
-          Name: Right2
-        Properties:
-          MotorController2: !!robotbuilder.data.properties.ChildSelectionProperty
-            default: 1
-            name: MotorController2
-            type: PIDOutput
-            validators: *id004
-            value: Right2
-          MotorController1: !!robotbuilder.data.properties.ChildSelectionProperty
-            default: 0
-            name: MotorController1
-            type: PIDOutput
-            validators: *id005
-            value: Right1
-          MotorController4: !!robotbuilder.data.properties.ChildSelectionProperty {
-            default: null, name: MotorController4, type: PIDOutput, validators: null,
-            value: null}
-          MotorController3: !!robotbuilder.data.properties.ChildSelectionProperty {
-            default: null, name: MotorController3, type: PIDOutput, validators: null,
-            value: null}
-        Base: Motor Controller Group
-        Name: Right
-      Properties:
-        Right Motor: !!robotbuilder.data.properties.ChildSelectionProperty
-          default: 1
-          name: Right Motor
-          type: PIDOutput
-          validators: [RobotDrive2, ChildDropdownSelected]
-          value: Right1
-        Maximum Output: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Maximum Output, validators: null, value: 1.0}
-        Left Motor: !!robotbuilder.data.properties.ChildSelectionProperty
-          default: 0
-          name: Left Motor
-          type: PIDOutput
-          validators: [RobotDrive2, ChildDropdownSelected]
-          value: Left1
-        Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
-          name: Safety Expiration Time, validators: null, value: 0.1}
-        Safety Enabled: !!robotbuilder.data.properties.BooleanProperty {default: true,
-          name: Safety Enabled, validators: null, value: true}
-      Base: Differential Drive
-      Name: Wheels
+  - Children: []
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Send to SmartDashboard, validators: null, value: false}
@@ -217,9 +77,7 @@ Children:
         default: []
         name: Parameters
         validators: null
-        value:
-        - !!robotbuilder.data.properties.ParameterDescriptor {name: Left, type: DoubleSupplier}
-        - !!robotbuilder.data.properties.ParameterDescriptor {name: Right, type: DoubleSupplier}
+        value: []
       Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Run When Disabled, validators: null, value: false}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
@@ -260,7 +118,7 @@ Properties:
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
   Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Bigla\',
-    extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\Bigla\'}
+    extension: null, folder: true, name: Wiring file location, validators: null, value: .\}
   Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Bigla\FRCProjects',
     extension: null, folder: true, name: Export Directory, validators: null, value: .\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,

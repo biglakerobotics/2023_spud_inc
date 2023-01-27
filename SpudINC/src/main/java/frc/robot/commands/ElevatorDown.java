@@ -13,7 +13,6 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
@@ -62,7 +61,7 @@ public class ElevatorDown extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        DriverStation.reportWarning("Its alive!", null);
+        // m_elevator.mDifferentialDrive.arcadeDrive(.5);
     }
 
     // Called once the command ends or is interrupted.

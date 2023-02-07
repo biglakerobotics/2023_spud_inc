@@ -1,0 +1,6 @@
+/* Zero QuadEncoders, used to reset position when initializing Motion Magic */
+void zeroDistance(){
+	_leftMaster.getSensorCollection().setIntegratedSensorPosition(0, Constants.kTimeoutMs);
+	_rightMaster.getSensorCollection().setIntegratedSensorPosition(0, Constants.kTimeoutMs);
+	System.out.println("[Integrated Encoders] All encoders are zeroed.\n");
+} 

@@ -61,12 +61,13 @@ public class ElevatorDown extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        // m_elevator.mDifferentialDrive.arcadeDrive(.5);
+        m_elevator.ElevatorDown();
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        m_elevator.ElevatorStop();
     }
 
     // Returns true when the command should end.

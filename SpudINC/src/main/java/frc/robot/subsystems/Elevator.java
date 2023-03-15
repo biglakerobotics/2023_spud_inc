@@ -13,12 +13,15 @@
 package frc.robot.subsystems;
 
 
+import frc.robot.Constants;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -60,15 +63,30 @@ public class Elevator extends SubsystemBase {
         Front.setNeutralMode(NeutralMode.Brake);
         Back.configFactoryDefault();
         Back.setNeutralMode(NeutralMode.Brake);
-        Front.configPeakOutputForward(0.5);
         Front.configPeakOutputReverse(-0.5);
-        Back.configPeakOutputForward(0.5);
         Back.configPeakOutputReverse(-0.5);
         Front.setInverted(false);
         Back.setInverted(true);
+        Back.setSensorPhase(true);
 
         timer.start();
+        Front.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,0,10);
         Front.getSensorCollection().setIntegratedSensorPosition(0, 0);
+        Front.config_kF(0, Constants.kF); 
+        Front.config_kD(0, Constants.kD); 
+        Front.config_kP(0, Constants.kP); 
+        Front.config_kI(0, Constants.kI); 
+        Front.configPeakOutputForward(Constants.peakOutPut, 50); 
+        Front.configClosedloopRamp(1);
+
+        Back.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,0,10);
+        Back.getSensorCollection().setIntegratedSensorPosition(0, 0);
+        Back.config_kF(0, Constants.kF); 
+        Back.config_kD(0, Constants.kD); 
+        Back.config_kP(0, Constants.kP); 
+        Back.config_kI(0, Constants.kI); 
+        Back.configPeakOutputForward(Constants.peakOutPut, 50); 
+        Back.configClosedloopRamp(1);
 
         addChild("ElevatorFrontPot",elevatorFrontPot);
         addChild("ElevatorBackPot",elevatorBackPot);
@@ -95,13 +113,14 @@ public class Elevator extends SubsystemBase {
 
     public void ElevatorFrontOnlyUp(){
         if (timer.hasElapsed(1)) {
-            System.out.print("\nFront sensor position: ");
-            System.out.print(Front.getSensorCollection().getIntegratedSensorPosition());
-            if (Front.getSensorCollection().getIntegratedSensorPosition() < 50000) {
-                Front.set(elevatorUpSpeed);
-            } else {
-                Front.set(0);
-            }
+            // System.out.print("\nFront sensor position: ");
+            // System.out.print(Front.getSensorCollection().getIntegratedSensorPosition());
+            // if (Front.getSensorCollection().getIntegratedSensorPosition() < 50000) {
+            //     Front.set(elevatorUpSpeed);
+            // } else {
+            //     Front.set(0);
+            // }
+            Front.set(ControlMode.Position, 40000);
         }
     }
 
@@ -120,13 +139,14 @@ public class Elevator extends SubsystemBase {
 
     public void ElevatorBackOnlyUp(){
         if (timer.hasElapsed(1)) {
-            //System.out.print("\nBack sensor position: ");
-           // System.out.print(Back.getSensorCollection().getIntegratedSensorPosition());
-            if (Back.getSensorCollection().getIntegratedSensorPosition() > -50000) {
-                Back.set(elevatorUpSpeed);
-            } else {
-                Back.set(0);
-            }
+            Back.set(ControlMode.Position, 40000);
+        //     //System.out.print("\nBack sensor position: ");
+        //    // System.out.print(Back.getSensorCollection().getIntegratedSensorPosition());
+        //     if (Back.getSensorCollection().getIntegratedSensorPosition() > -50000) {
+        //         Back.set(elevatorUpSpeed);
+        //     } else {
+        //         Back.set(0);
+        //     }
         }
     }
 

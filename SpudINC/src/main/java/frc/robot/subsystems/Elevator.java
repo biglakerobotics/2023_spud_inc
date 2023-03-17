@@ -87,7 +87,7 @@ public class Elevator extends SubsystemBase {
         Back.config_kI(0, Constants.kI); 
         Back.configPeakOutputForward(Constants.peakOutPut, 50); 
         Back.configClosedloopRamp(1);
-
+        
         addChild("ElevatorFrontPot",elevatorFrontPot);
         addChild("ElevatorBackPot",elevatorBackPot);
 

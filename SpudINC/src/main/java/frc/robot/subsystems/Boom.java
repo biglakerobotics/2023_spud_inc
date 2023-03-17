@@ -14,9 +14,13 @@
 //NOTE FOR OTHER PROGRAMMERS: BOOM iS THE ARM THINGY ON THE ROBOT
 package frc.robot.subsystems;
 
+import java.util.ResourceBundle.Control;
+
 import javax.sound.sampled.SourceDataLine;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 
 // import java.util.ResourceBundle.Control;
 // import javax.lang.model.util.ElementScanner14;
@@ -26,6 +30,8 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 // import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 // import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
+import frc.robot.Constants;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
@@ -78,15 +84,14 @@ public class Boom extends SubsystemBase {
 
         timer.start();
         boomMotor.getSensorCollection().setIntegratedSensorPosition(0, 0);
-        // boomMotor.setSensorPhase(false);
-        // boomMotor.config_kF(0, 0);
-        // boomMotor.config_kP(0, .1);
-        // boomMotor.config_kI(0, 0);
-        // boomMotor.config_kD(0, 0);
-        // boomMotor.config_IntegralZone(0, 0);
-        // boomMotor.configClosedLoopPeakOutput(0, 1);
-        // boomMotor.configAllowableClosedloopError(0, 0, 0);
-        // boomMotor.setSelectedSensorPosition(0);
+        boomMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,0,10);
+        boomMotor.getSensorCollection().setIntegratedSensorPosition(0, 0);
+        boomMotor.config_kF(0, Constants.kF); 
+        boomMotor.config_kD(0, Constants.kD); 
+        boomMotor.config_kP(0, Constants.kP); 
+        boomMotor.config_kI(0, Constants.kI); 
+        boomMotor.configPeakOutputForward(1, 50); 
+        boomMotor.configClosedloopRamp(1);
 
     }
 
@@ -104,7 +109,7 @@ public void BoomFullyExtended(){
         // System.out.print("\nBoomMotor pos: ");
         // System.out.print(boomMotor.getSensorCollection().getIntegratedSensorPosition());
         // if (boomMotor.getSensorCollection().getIntegratedSensorPosition() > 1000) {
-            boomMotor.set(boomSpeedOut);
+            boomMotor.set(ControlMode.Position, 8000);
         // } else {
         //     boomMotor.set(0);
         // }
@@ -136,6 +141,7 @@ public void BoomFullyRetracted(){
         // System.out.print("\nBoomMotor pos: ");
         // System.out.print(boomMotor.getSensorCollection().getIntegratedSensorPosition());
         // if (boomMotor.getSensorCollection().getIntegratedSensorPosition() < 8000) {
+            // boomMotor.set(ControlMode.Position, 1000);
             boomMotor.set(boomSpeedIn);
         // } else {
         //     boomMotor.set(0);

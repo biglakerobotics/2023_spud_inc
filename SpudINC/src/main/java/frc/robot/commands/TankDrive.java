@@ -62,8 +62,14 @@ public class TankDrive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        DriveX = joystick.getRawAxis(0)*.45;
-        DriveY = joystick.getRawAxis(1)*.75;
+        
+        if (joystick.getRawButtonPressed(2)) {
+            DriveX = joystick.getRawAxis(0)*.225;
+            DriveY = joystick.getRawAxis(1)*.45;
+        } else {
+            DriveX = joystick.getRawAxis(0)*.45;
+            DriveY = joystick.getRawAxis(1)*.75;
+        }
         m_drivetrain.mDifferentialDrive.arcadeDrive(DriveY, DriveX);
     }
 

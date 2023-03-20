@@ -25,12 +25,12 @@ public class Camera extends TimedRobot {
               // Get the UsbCamera from CameraServer
               UsbCamera camera = CameraServer.startAutomaticCapture();
               // Set the resolution
-              camera.setResolution(640, 480);
+              camera.setResolution(1280, 720);
 
               // Get a CvSink. This will capture Mats from the camera
               CvSink cvSink = CameraServer.getVideo();
               // Setup a CvSource. This will send images back to the Dashboard
-              CvSource outputStream = CameraServer.putVideo("Asher'sSickCamera", 640, 480);
+              CvSource outputStream = CameraServer.putVideo("Asher's Sick Camera", 1280, 720);
 
               // Mats are very memory expensive. Lets reuse this Mat.
               Mat mat = new Mat();

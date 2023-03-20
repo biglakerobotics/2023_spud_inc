@@ -97,7 +97,7 @@ public class Elevator extends SubsystemBase {
     }
 
     public void ElevatorUp(){    
-        ElevatorFrontOnlyUp();
+        ElevatorFrontOnlyUp(); 
         ElevatorBackOnlyUp();
     }
 
@@ -120,7 +120,7 @@ public class Elevator extends SubsystemBase {
             // } else {
             //     Front.set(0);
             // }
-            Front.set(ControlMode.Position, 40000);
+            Front.set(ControlMode.Position, 130000);
         }
     }
 
@@ -139,7 +139,7 @@ public class Elevator extends SubsystemBase {
 
     public void ElevatorBackOnlyUp(){
         if (timer.hasElapsed(1)) {
-            Back.set(ControlMode.Position, 40000);
+            Back.set(ControlMode.Position, 120000);
         //     //System.out.print("\nBack sensor position: ");
         //    // System.out.print(Back.getSensorCollection().getIntegratedSensorPosition());
         //     if (Back.getSensorCollection().getIntegratedSensorPosition() > -50000) {
@@ -154,7 +154,7 @@ public class Elevator extends SubsystemBase {
         if (timer.hasElapsed(1)) {
             // System.out.print("\nBack sensor position: ");
              //System.out.print(Back.getSensorCollection().getIntegratedSensorPosition());
-             if (Back.getSensorCollection().getIntegratedSensorPosition() < -1000) {
+             if (Back.getSensorCollection().getIntegratedSensorPosition() < 1000) {
                  Back.set(elevatorDownSpeed);
              } else {
                  Back.set(0);
@@ -207,52 +207,27 @@ public class Elevator extends SubsystemBase {
 
     public void ElevatorMidPreset(){
         if (timer.hasElapsed(1)) {
-             if (Back.getSensorCollection().getIntegratedSensorPosition() < -9900 || Back.getSensorCollection().getIntegratedSensorPosition() < -10100) {
-                if (Back.getSensorCollection().getIntegratedSensorPosition() < -9900){
-                    Back.set(elevatorDownSpeed);
-                }
-                if (Back.getSensorCollection().getIntegratedSensorPosition() > -10100){
-                    Back.set(elevatorUpSpeed);
-                }
-             }else{
-                Back.set(0);
-            }
-             if (Front.getSensorCollection().getIntegratedSensorPosition() < 10100 || Front.getSensorCollection().getIntegratedSensorPosition() > 9900) {
-                 if(Front.getSensorCollection().getIntegratedSensorPosition() < 10000){
-                    Front.set(elevatorUpSpeed);
-                 }
-                 if(Front.getSensorCollection().getIntegratedSensorPosition() > 10000){
-                    Front.set(elevatorDownSpeed);
-                 }
-             } else {
-                 Front.set(0);
-             }
-         }
+            System.out.print("\nMid Elevator Preset");
+            System.out.print("\nFront Position: "); System.out.print(Front.getSelectedSensorPosition());
+            System.out.print("\nBack Position: "); System.out.print(Back.getSelectedSensorPosition());
+            Front.set(TalonFXControlMode.Position, Constants.ELEVATOR_MID_PRESET_FRONT);
+            Back.set(TalonFXControlMode.Position, Constants.ELEVATOR_MID_PRESET_BACK);
         }
+    }
 
     public void ElevatorPickUpPreset(){           //note to future programmers, CHANGE THESE NUMBERS!!!
         if (timer.hasElapsed(1)) {
-            if (Back.getSensorCollection().getIntegratedSensorPosition() < -990 || Back.getSensorCollection().getIntegratedSensorPosition() < -1010) {
-               if (Back.getSensorCollection().getIntegratedSensorPosition() < -990){
-                   Back.set(elevatorDownSpeed);
-               }
-               if (Back.getSensorCollection().getIntegratedSensorPosition() > -1010){
-                   Back.set(elevatorUpSpeed);
-               }
-            }else{
-               Back.set(0);
-           }
-            if (Front.getSensorCollection().getIntegratedSensorPosition() < 1010 || Front.getSensorCollection().getIntegratedSensorPosition() > 990) {
-                if(Front.getSensorCollection().getIntegratedSensorPosition() < 1000){
-                   Front.set(elevatorUpSpeed);
-                }
-                if(Front.getSensorCollection().getIntegratedSensorPosition() > 1000){
-                   Front.set(elevatorDownSpeed);
-                }
-            } else {
-                Front.set(0);
-            }
+            Front.set(TalonFXControlMode.Position, 2000);
+            Back.set(TalonFXControlMode.Position, 20000);
         }
+    }
+
+    public void ElevatorHighPreset(){
+
+    }
+
+    public void ElevatorLowPreset(){
+        
     }
 
 

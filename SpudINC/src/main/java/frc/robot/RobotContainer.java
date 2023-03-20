@@ -10,6 +10,7 @@
 
 // ROBOTBUILDER TYPE: RobotContainer.
 
+
 package frc.robot;
 
 import frc.robot.commands.*;
@@ -104,30 +105,31 @@ private final Joystick joystick1 = new Joystick(0);
 // Boom 
 final JoystickButton boomExtendButton = new JoystickButton(xboxController1, XboxController.Button.kX.value);    
 final JoystickButton boomRetractButton = new JoystickButton(xboxController1, XboxController.Button.kB.value);     
-final JoystickButton boomFullyExtendedButton = new JoystickButton(xboxController1, XboxController.Button.kLeftBumper.value); 
+// final JoystickButton boomFullyExtendedButton = new JoystickButton(xboxController1, XboxController.Button.kLeftBumper.value); 
+final JoystickButton boomFullyRetractedButton = new JoystickButton(xboxController1, XboxController.Button.kLeftBumper.value); 
 
-boomExtendButton.whileTrue(new BoomExtend( m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-boomRetractButton.whileTrue(new BoomRetract( m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));       
-boomFullyExtendedButton.whileTrue(new BoomFullyExtended( m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf)); 
+boomExtendButton.onTrue(new BoomFullyExtended( m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+boomRetractButton.onTrue(new BoomFullyRetracted( m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));       
+// boomFullyExtendedButton.whileTrue(new BoomFullyExtended( m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf)); 
+boomFullyRetractedButton.whileTrue(new BoomRetract( m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf)); 
 
-// Elevator
-
-//final JoystickButton ybutton = new JoystickButton(xboxController1, XboxController.Button.kY.value);
-//final JoystickButton abutton = new JoystickButton(xboxController1, XboxController.Button.kA.value);
+// Elevator (ElevatorFrontOnlyDown = button7, ElevatorFrontOnlyUp = button8, ElevatorBackOnlyDown = button9, ElevatorBackOnlyUp = button10)
+final JoystickButton ybutton = new JoystickButton(xboxController1, XboxController.Button.kY.value);
+final JoystickButton abutton = new JoystickButton(xboxController1, XboxController.Button.kA.value);
 final JoystickButton ninebutton = new JoystickButton(joystick1, 9);
 final JoystickButton tenbutton = new JoystickButton(joystick1, 10);
 final JoystickButton sevenbutton = new JoystickButton(joystick1, 7);
 final JoystickButton eightbutton = new JoystickButton(joystick1, 8);
 final JoystickButton elevenbutton = new JoystickButton(joystick1, 11);
-//ybutton.whileTrue(new ElevatorUp(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-//abutton.whileTrue(new ElevatorDown(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+ybutton.whileTrue(new ElevatorUp(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+abutton.whileTrue(new ElevatorDown(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 ninebutton.whileTrue(new ElevatorBackOnlyDown(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 tenbutton.whileTrue(new ElevatorBackOnlyUp(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 sevenbutton.whileTrue(new ElevatorFrontOnlyDown(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 eightbutton.whileTrue(new ElevatorFrontOnlyUp(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 elevenbutton.whileTrue(new ElevatorStart(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
-// Claw (ClawToggle = r1)
+// Claw (ClawToggle = r1 or rb)
 final JoystickButton clawToggleButton = new JoystickButton(xboxController1, XboxController.Button.kRightBumper.value);        
 clawToggleButton.toggleOnTrue(new ClawToggle(false, m_claw).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
@@ -137,10 +139,10 @@ final JoystickButton MidPresetButton = new JoystickButton(joystick1,3);
 final JoystickButton LowPresetButton = new JoystickButton(joystick1,4);
 final JoystickButton HighPresetButton = new JoystickButton(joystick1,5);
 
-MidPresetButton.whileTrue(new ElevatorMidPreset(m_boom,m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-PickUpPresetButton.whileTrue(new ElevatorPickUpPreset(m_boom,m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-LowPresetButton.whileTrue(new ElevatorDown(m_boom, m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-HighPresetButton.whileTrue(new ElevatorUp(m_boom,m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+MidPresetButton.onTrue(new ElevatorMidPreset(m_boom,m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+PickUpPresetButton.onTrue(new ElevatorPickUpPreset(m_boom,m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+LowPresetButton.onTrue(new ElevatorLowPreset(m_boom, m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+HighPresetButton.onTrue(new ElevatorHighPreset(m_boom,m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
     // END AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=BUTTONS
   }
 

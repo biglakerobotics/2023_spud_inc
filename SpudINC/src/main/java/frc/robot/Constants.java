@@ -26,6 +26,12 @@ public class Constants {
     public static final double kD = 30;
     public static final double kF = 0;
     public static final double peakOutPut = .6;
+    public static final double ELEVATOR_MID_PRESET_FRONT = 60000;
+    public static final double ELEVATOR_MID_PRESET_BACK = 60000;
+    public static final double BOOM_MOTOR_KF = 0;
+    public static final double BOOM_MOTOR_KD = 40;
+    public static final double BOOM_MOTOR_KI = 0;
+    public static final double BOOM_MOTOR_KP = .4;
 
    /**
     * public static final class DriveConstants {

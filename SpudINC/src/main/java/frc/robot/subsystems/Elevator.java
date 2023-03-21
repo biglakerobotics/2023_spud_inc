@@ -96,17 +96,27 @@ public class Elevator extends SubsystemBase {
 
     }
 
-    public void ElevatorUp(){    
+    public void ElevatorUp(){   
+        System.out.print("\nFront sensor position: ");
+        System.out.print(Front.getSensorCollection().getIntegratedSensorPosition());
+        System.out.print("\nBack sensor position: ");
+        System.out.print(Back.getSensorCollection().getIntegratedSensorPosition()); 
         ElevatorFrontOnlyUp(); 
         ElevatorBackOnlyUp();
     }
 
     public void ElevatorDown(){
+        System.out.print("\nFront sensor position: ");
+        System.out.print(Front.getSensorCollection().getIntegratedSensorPosition());
+        System.out.print("\nBack sensor position: ");
+        System.out.print(Back.getSensorCollection().getIntegratedSensorPosition()); 
         ElevatorFrontOnlyDown();
         ElevatorBackOnlyDown();
     }
 
     public void ElevatorStop(){
+        // Front.set(TalonFXControlMode.Position, Front.getSensorCollection().getIntegratedSensorPosition());
+        // Back.set(TalonFXControlMode.Position, Back.getSensorCollection().getIntegratedSensorPosition());
         Front.set(0);
         Back.set(0);
     }
@@ -120,7 +130,7 @@ public class Elevator extends SubsystemBase {
             // } else {
             //     Front.set(0);
             // }
-            Front.set(ControlMode.Position, 130000);
+            Front.set(TalonFXControlMode.Position, 130000);
         }
     }
 
@@ -223,11 +233,13 @@ public class Elevator extends SubsystemBase {
     }
 
     public void ElevatorHighPreset(){
-
+        Front.set(TalonFXControlMode.Position, 100000);
+        Back.set(TalonFXControlMode.Position, Constants.ELEVATOR_MID_PRESET_BACK);
     }
 
     public void ElevatorLowPreset(){
-        
+        Front.set(TalonFXControlMode.Position, 2000);
+        Back.set(TalonFXControlMode.Position, 2000);
     }
 
 

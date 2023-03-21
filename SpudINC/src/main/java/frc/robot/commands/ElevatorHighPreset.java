@@ -49,8 +49,8 @@ public class ElevatorHighPreset extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_elevator.ElevatorHighPreset();
-        m_boom.BoomFullyMiddle();
+        // m_elevator.ElevatorHighPreset();
+        m_boom.BoomFullyExtended();
     }
 
     // Called once the command ends or is interrupted.

@@ -17,8 +17,11 @@ import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.*;
+import frc.robot.commands.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,6 +35,7 @@ public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
 
     private RobotContainer m_robotContainer;
+    public final DriveTrain m_driveTrain = new DriveTrain();
 
     /**
      * This function is run when the robot is first started up and should be
@@ -74,12 +78,15 @@ public class Robot extends TimedRobot {
     public void disabledPeriodic() {
     }
 
+    private double startTime;
+
     /**
     * This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
     */
     @Override
     public void autonomousInit() {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+        startTime = Timer.getFPGATimestamp();
 
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
@@ -92,6 +99,11 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void autonomousPeriodic() {
+        Double time = Timer.getFPGATimestamp();
+
+        if (time - startTime < 1) {
+            new AutoTankDrivePosition(m_driveTrain, 4906, 4096);   
+        }
     }
 
     @Override

@@ -21,17 +21,46 @@ package frc.robot;
  */
 public class Constants {
 
-    public static final double kP = .4;
-    public static final double kI = 0;
-    public static final double kD = 30;
-    public static final double kF = 0;
+    public static final double ELEVATOR_FRONT_kP = .4;
+    public static final double ELEVATOR_FRONT_kI = 0;
+    public static final double ELEVATOR_FRONT_kD = 30;
+    public static final double ELEVATOR_FRONT_kF = .4;
+    public static final double ELEVATOR_BACK_kP = .2;
+    public static final double ELEVATOR_BACK_kI = 0;
+    public static final double ELEVATOR_BACK_kD = 30;
+    public static final double ELEVATOR_BACK_kF = .3;
     public static final double peakOutPut = .6;
+
     public static final double ELEVATOR_MID_PRESET_FRONT = 90000;
     public static final double ELEVATOR_MID_PRESET_BACK = 70000;
+    public static final double ELEVATOR_PICKUP_PRESET_FRONT = 2000;
+    public static final double ELEVATOR_PICKUP_PRESET_BACK = 10000;
+
+    public static final double ELEVATOR_TOP_HEIGHT_PRESET = 130000;
+    public static final double ELEVATOR_MID_HEIGHT_PRESET = 80000;
+    public static final double ELEVATOR_LOW_HEIGHT_PRESET = 0;
+
     public static final double BOOM_MOTOR_KF = 0;
     public static final double BOOM_MOTOR_KD = 100;
     public static final double BOOM_MOTOR_KI = 0;
     public static final double BOOM_MOTOR_KP = .45;
+
+    public static final int ELEVATOR_FRONT_MOTOR_ID = 5;
+    public static final int ELEVATOR_BACK_MOTOR_ID = 12;
+
+    public static final int BOOM_MOTOR_ID = 11;
+    public static final Double BOOM_SPEED_IN = -.3;
+    public static final Double BOOM_SPEED_OUT = .12;
+
+    public static final double BOOM_FULL_PRESET = 25000;
+    public static final double BOOM_MID_PRESET = 9000;
+    public static final double BOOM_IN_PRESET = 0;
+
+    public static final int DRIVE_L_LEAD_MOTOR_ID = 14;
+    public static final int DRIVE_L_FOLLOW_MOTOR_ID = 13;
+    public static final int DRIVE_R_LEAD_MOTOR_ID = 16;
+    public static final int DRIVE_R_FOLLOW_MOTOR_ID = 15;
+
 
    /**
     * public static final class DriveConstants {

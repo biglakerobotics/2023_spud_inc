@@ -49,11 +49,6 @@ public class Elevator extends SubsystemBase {
         Front.setNeutralMode(NeutralMode.Brake);
         Back.configFactoryDefault();
         Back.setNeutralMode(NeutralMode.Brake);
-        Front.configPeakOutputReverse(-0.5);
-        Back.configPeakOutputReverse(-0.5);
-        Front.setInverted(false);
-        Back.setInverted(true);
-        Back.setSensorPhase(true);
 
         timer.start();
         Front.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,0,10);
@@ -63,7 +58,7 @@ public class Elevator extends SubsystemBase {
         Front.config_kP(0, Constants.ELEVATOR_FRONT_kP); 
         Front.config_kI(0, Constants.ELEVATOR_FRONT_kI); 
         Front.configPeakOutputForward(Constants.peakOutPut, 50); 
-        Front.configClosedloopRamp(2);
+        Front.configClosedloopRamp(1);
 
         Back.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,0,10);
         Back.getSensorCollection().setIntegratedSensorPosition(0, 0);
@@ -72,8 +67,34 @@ public class Elevator extends SubsystemBase {
         Back.config_kP(0, Constants.ELEVATOR_BACK_kP); 
         Back.config_kI(0, Constants.ELEVATOR_BACK_kI); 
         Back.configPeakOutputForward(Constants.peakOutPut, 50); 
-        Back.configClosedloopRamp(2);
+        Back.configClosedloopRamp(1);
 
+        Front.configPeakOutputReverse(-0.5);
+        Front.configPeakOutputForward(.5);
+        Back.configPeakOutputReverse(-0.5);
+        Back.configPeakOutputForward(.5);
+
+        Front.setSensorPhase(false);
+        Back.setSensorPhase(true);
+        Front.setInverted(false);
+        Back.setInverted(true);
+    }
+
+    public Boolean ElevatorHome(){
+        
+        if (Front.getStatorCurrent() > 60) {
+            System.out.print("\nFront Elevator overcurrent! setting Front Elevator Motor position to Zero");
+            Front.set(0);
+            Front.setSelectedSensorPosition(-750);
+            return true;
+        } else {
+            System.out.print("\nFront Elevator Motor current: ");
+            System.out.print(Front.getStatorCurrent());
+            System.out.print(" - Front Elevator Motor position: ");
+            System.out.print(Front.getSelectedSensorPosition());
+            Front.set(elevatorDownSpeed);
+            return false;
+        }
     }
 
     public void ElevatorUp(){
@@ -111,12 +132,16 @@ public class Elevator extends SubsystemBase {
 
     public void ElevatorBackOnlyUp(){
         if (timer.hasElapsed(1)) {
-            Back.set(ControlMode.Position, Constants.ELEVATOR_TOP_HEIGHT_PRESET);
+            System.out.print("\nBack pos: ");
+            System.out.print(Back.getSensorCollection().getIntegratedSensorPosition());
+            Back.set(TalonFXControlMode.Position, Constants.ELEVATOR_TOP_HEIGHT_PRESET);
         }
     }
 
     public void ElevatorBackOnlyDown(){
         if (timer.hasElapsed(1)) {
+            System.out.print("\nBack pos: ");
+            System.out.print(Back.getSensorCollection().getIntegratedSensorPosition());
             if (Back.getSensorCollection().getIntegratedSensorPosition() > 7000) {
                 Back.set(elevatorDownSpeed);
             } else {
@@ -160,8 +185,12 @@ public class Elevator extends SubsystemBase {
     public void ElevatorMidPreset(){
         if (timer.hasElapsed(1)) {
             System.out.print("\nMid Elevator Preset");
-            Front.set(TalonFXControlMode.Position, Constants.ELEVATOR_MID_PRESET_FRONT);
-            Back.set(TalonFXControlMode.Position, Constants.ELEVATOR_MID_PRESET_BACK);
+            System.out.print("\nFront Elevator pos: ");
+            System.out.print(Front.getSensorCollection().getIntegratedSensorPosition());
+            System.out.print("\nBack Elevator pos: ");
+            System.out.print(Back.getSensorCollection().getIntegratedSensorPosition());
+            Front.set(TalonFXControlMode.Position, Constants.ELEVATOR_MID_HEIGHT_PRESET);
+            Back.set(TalonFXControlMode.Position, Constants.ELEVATOR_MID_HEIGHT_PRESET);
         }
     }
 

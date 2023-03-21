@@ -49,7 +49,7 @@ public class ElevatorLowPreset extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        // m_elevator.ElevatorLowPreset();
+        m_elevator.ElevatorLowPreset();
         m_boom.BoomFullyRetracted();
     }
 

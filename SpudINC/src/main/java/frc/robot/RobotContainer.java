@@ -97,7 +97,7 @@ public class RobotContainer {
         boomExtendButton.onTrue(new BoomFullyExtended( m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
         boomRetractButton.onTrue(new BoomFullyRetracted( m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));       
         // boomFullyExtendedButton.whileTrue(new BoomFullyExtended( m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf)); 
-        boomFullyRetractedButton.whileTrue(new BoomRetract( m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf)); 
+        boomFullyRetractedButton.onTrue(new ElevatorStart( m_elevator, m_boom ).withInterruptBehavior(InterruptionBehavior.kCancelSelf)); 
 
         // Elevator (ElevatorFrontOnlyDown = button7, ElevatorFrontOnlyUp = button8, ElevatorBackOnlyDown = button9, ElevatorBackOnlyUp = button10)
         final JoystickButton ybutton = new JoystickButton(xboxController1, XboxController.Button.kY.value);
@@ -113,7 +113,7 @@ public class RobotContainer {
         tenbutton.whileTrue(new ElevatorBackOnlyUp(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
         sevenbutton.whileTrue(new ElevatorFrontOnlyDown(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
         eightbutton.whileTrue(new ElevatorFrontOnlyUp(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-        elevenbutton.whileTrue(new ElevatorStart(m_elevator).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+        elevenbutton.whileTrue(new ElevatorStart(m_elevator, m_boom).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
         // Claw (ClawToggle = r1 or rb)
         final JoystickButton clawToggleButton = new JoystickButton(xboxController1, XboxController.Button.kRightBumper.value);        

@@ -28,7 +28,7 @@ public class Constants {
     public static final double ELEVATOR_BACK_kP = .2;
     public static final double ELEVATOR_BACK_kI = 0;
     public static final double ELEVATOR_BACK_kD = 30;
-    public static final double ELEVATOR_BACK_kF = .3;
+    public static final double ELEVATOR_BACK_kF = 0;
     public static final double peakOutPut = .6;
 
     public static final double ELEVATOR_MID_PRESET_FRONT = 90000;

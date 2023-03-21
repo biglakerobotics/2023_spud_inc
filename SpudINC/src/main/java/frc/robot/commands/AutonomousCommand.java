@@ -51,10 +51,10 @@ public class AutonomousCommand extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        while (!m_boom.BoomHome()) {
-            System.out.print("\nHoming Boom");
-        }
-        m_boom.BoomFullyRetracted();
+        // while (!m_boom.BoomHome()) {
+        //     System.out.print("\nHoming Boom");
+        // }
+        // m_boom.BoomFullyRetracted();
     }
 
     // Called every time the scheduler runs while the command is scheduled.

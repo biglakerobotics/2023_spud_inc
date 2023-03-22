@@ -32,7 +32,7 @@ public class Constants {
     public static final double peakOutPut = .6;
 
     public static final double ELEVATOR_MID_PRESET_FRONT = 90000;
-    public static final double ELEVATOR_MID_PRESET_BACK = 70000;
+    public static final double ELEVATOR_MID_PRESET_BACK = -70000;
     public static final double ELEVATOR_PICKUP_PRESET_FRONT = 2000;
     public static final double ELEVATOR_PICKUP_PRESET_BACK = 10000;
 

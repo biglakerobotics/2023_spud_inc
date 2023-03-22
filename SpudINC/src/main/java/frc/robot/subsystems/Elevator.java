@@ -75,9 +75,9 @@ public class Elevator extends SubsystemBase {
         Back.configPeakOutputForward(.5);
 
         Front.setSensorPhase(false);
-        Back.setSensorPhase(true);
+        Back.setSensorPhase(false);
         Front.setInverted(false);
-        Back.setInverted(true);
+        Back.setInverted(false);
     }
 
     public Boolean ElevatorHome(){
@@ -134,7 +134,7 @@ public class Elevator extends SubsystemBase {
         if (timer.hasElapsed(1)) {
             System.out.print("\nBack pos: ");
             System.out.print(Back.getSensorCollection().getIntegratedSensorPosition());
-            Back.set(TalonFXControlMode.Position, Constants.ELEVATOR_TOP_HEIGHT_PRESET);
+            Back.set(TalonFXControlMode.Position, Constants.ELEVATOR_TOP_HEIGHT_PRESET * -1);
         }
     }
 
